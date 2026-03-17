@@ -6,7 +6,7 @@ import config_shortcut, {
 import { Key, keyCodeToCode, keyToKeyCodeMap, KeyType } from '@root/types/key'
 import { autorun } from 'mobx'
 import { addEventListener } from '@root/utils'
-import { eventBus } from './event'
+import { eventBus, PlayerEvent } from './event'
 
 // const getShortcutConfigs = onceCall(() =>
 //   Object.fromEntries(
@@ -56,14 +56,17 @@ export class KeyBinding {
   protected pressingConstant = 3
 
   updateKeydownWindow(keydownWindow: Window) {
-    this.unload()
+    this.reset()
 
     this.keydownWindow = keydownWindow
     this.init()
   }
 
+  isLockedMode = false
+  lockedKey = ''
+
   init() {
-    this.unload()
+    this.reset()
     this.unListens.push(
       addEventListener(this.keydownWindow, (keydownWindow) => {
         keydownWindow.addEventListener('keydown', (e) => {
@@ -88,11 +91,18 @@ export class KeyBinding {
         Object.entries(configs).forEach(([name, _keys]) => {
           const keys = _keys as Key[]
           const key = (keys as string[]).join('+')
+          const command = name.replace('shortcut_', 'command_') as any
 
-          this.configKeyMap[key] = () => {
-            const command = name.replace('shortcut_', 'command_') as any
-            console.log('command', command)
-            eventBus.emit(command)
+          if (command === PlayerEvent.command_lockedModeToggle) {
+            this.lockedKey = key
+            this.configKeyMap[key] = () => {
+              this.isLockedMode = !this.isLockedMode
+              eventBus.emit(command)
+            }
+          } else {
+            this.configKeyMap[key] = () => {
+              eventBus.emit(command)
+            }
           }
 
           if (keys[keys.length - 1] === KeyType.press) {
@@ -109,9 +119,14 @@ export class KeyBinding {
     )
   }
 
-  unload() {
+  reset() {
     this.unListens.forEach((fn) => fn())
     this.unListens.length = 0
+  }
+
+  unload() {
+    this.isLockedMode = false
+    this.reset()
   }
 
   protected handleKeyDown(e: KeyboardEvent) {
@@ -135,6 +150,11 @@ export class KeyBinding {
     actions.push(...formatKeys((keyCodeToCode as any)[keyCode]))
 
     const mapKey = actions.join('+')
+
+    if (this.isLockedMode && mapKey !== this.lockedKey) {
+      e.preventDefault()
+      return
+    }
 
     // 强制keyup、keypress的都阻止默认行为
     // 例如→键，现在有长按触发模式，所以默认没有down行为，只有up行为
@@ -200,6 +220,10 @@ export class KeyBinding {
     actions.push(...formatKeys((keyCodeToCode as any)[keyCode]))
 
     const mapKey = actions.join('+')
+    if (this.isLockedMode && mapKey !== this.lockedKey) {
+      e.preventDefault()
+      return
+    }
 
     if (this.releasePressingKeyFnMap[mapKey]) {
       e.preventDefault()

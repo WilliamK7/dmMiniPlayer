@@ -91,7 +91,7 @@ const ACTION_AREA_ACTIVE = 'active'
 const VideoPlayerV2Inner = observer(
   forwardRef<VideoPlayerHandle, VpInnerProps>((props, ref) => {
     const forceUpdate = useUpdate()
-    const { isLive, keyBinding, keydownWindow, videoPreviewManger } =
+    const { isLive, keyBinding, keydownWindow, videoPreviewManger, eventBus } =
       useContext(vpContext)
     const [isFullInWeb, setFullInWeb] = useState(false)
     const [isFullscreen, setFullscreen] = useState(false)
@@ -290,6 +290,19 @@ const VideoPlayerV2Inner = observer(
         }
       },
     )
+
+    useOnce(() => {
+      return eventBus.on2(PlayerEvent.command_lockedModeToggle, () => {
+        const dom = videoPlayerRef.current
+        if (!dom) return
+        const disable = 'pointer-events-none'
+        if (dom.classList.contains(disable)) {
+          dom.classList.remove(disable)
+        } else {
+          dom.classList.add(disable)
+        }
+      })
+    })
 
     const togglePlayState = useTogglePlayState()
 

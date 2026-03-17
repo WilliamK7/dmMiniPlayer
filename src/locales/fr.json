@@ -152,6 +152,7 @@
     "preVideo": "Vidéo précédente",
     "nextVideo": "Vidéo suivante",
     "speedMode": "Appuyez sur le mode long pour accélérer",
+    "speedModeDesc": "Compatible uniquement avec le déclenchement par appui long",
     "volumeUp": "Augmenter le volume",
     "volumeDown": "Baisser le volume",
     "mute/unmute": "Muet/mécontentement",
@@ -172,7 +173,8 @@
     "wheel": "Rouge de défilement de souris",
     "keydown": "Appuyer",
     "keyup": "Relâcher",
-    "press": "Maintenir enfoncé"
+    "press": "Maintenir enfoncé",
+    "lockedModeToggle": "Basculer le mode verrouillage"
   },
   "popup": {
     "tips": "Vous devez cliquer sur la page suivante pour déclencher la lecture image dans l'image",

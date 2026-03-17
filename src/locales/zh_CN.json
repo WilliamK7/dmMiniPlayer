@@ -173,7 +173,8 @@
     "wheel": "鼠标滚轮",
     "keydown": "按下",
     "keyup": "松开",
-    "press": "长按"
+    "press": "长按",
+    "lockedModeToggle": "切换锁定模式"
   },
   "popup": {
     "tips": "需要点击下页面才能触发画中画播放",

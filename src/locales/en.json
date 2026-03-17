@@ -173,7 +173,8 @@
     "wheel": "Mouse scroll wheel",
     "keydown": "KeyDown",
     "keyup": "KeyUp",
-    "press": "Press"
+    "press": "Press",
+    "lockedModeToggle": "Toggle lock mode"
   },
   "popup": {
     "tips": "Click on the web page to trigger picture-in-picture",

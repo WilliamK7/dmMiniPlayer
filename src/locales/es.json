@@ -152,6 +152,7 @@
     "preVideo": "Video anterior",
     "nextVideo": "Siguiente video",
     "speedMode": "Larga presione al modo de velocidad",
+    "speedModeDesc": "Solo compatible con disparo por pulsación larga",
     "volumeUp": "Subir volumen",
     "volumeDown": "Bajar volumen",
     "mute/unmute": "Mudo/descontento",
@@ -172,7 +173,8 @@
     "wheel": "Rueda de desplazamiento del ratón",
     "keydown": "Presionar",
     "keyup": "Soltar",
-    "press": "Mantener presionado"
+    "press": "Mantener presionado",
+    "lockedModeToggle": "Alternar modo de bloqueo"
   },
   "popup": {
     "tips": "Debes hacer clic en la página siguiente para activar la reproducción de imagen en imagen",

@@ -152,6 +152,7 @@
     "preVideo": "前のビデオ",
     "nextVideo": "次のビデオ",
     "speedMode": "スピードモードまでのロングプレス",
+    "speedModeDesc": "長押しトリガーのみ対応",
     "volumeUp": "ボリュームアップ",
     "volumeDown": "音量を下げる",
     "mute/unmute": "沈黙/不快感",
@@ -172,7 +173,8 @@
     "wheel": "マウススクロールホイール",
     "keydown": "押す",
     "keyup": "離す",
-    "press": "長押し"
+    "press": "長押し",
+    "lockedModeToggle": "ロックモード切り替え"
   },
   "popup": {
     "tips": "ピクチャーインピクチャー再生をトリガーするには,次のページをクリックする必要があります",

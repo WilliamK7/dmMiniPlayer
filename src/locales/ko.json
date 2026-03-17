@@ -152,6 +152,7 @@
     "preVideo": "이전 비디오",
     "nextVideo": "다음 비디오",
     "speedMode": "스피드 모드로 긴 누르십시오",
+    "speedModeDesc": "길게 누르기 트리거만 지원",
     "volumeUp": "볼륨 업",
     "volumeDown": "볼륨 낮추기",
     "mute/unmute": "음소거/불쾌",
@@ -172,7 +173,8 @@
     "wheel": "마우스 스크롤 휠",
     "keydown": "누르기",
     "keyup": "놓기",
-    "press": "길게 누르기"
+    "press": "길게 누르기",
+    "lockedModeToggle": "잠금 모드 전환"
   },
   "popup": {
     "tips": "Picture-in-Picture 재생을 시작하려면 다음 페이지를 클릭해야 합니다",

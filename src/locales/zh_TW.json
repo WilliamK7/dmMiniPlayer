@@ -152,6 +152,7 @@
     "preVideo": "上一個視頻",
     "nextVideo": "下一個視頻",
     "speedMode": "長按速度模式",
+    "speedModeDesc": "只適配長按觸發",
     "volumeUp": "音量+",
     "volumeDown": "音量-",
     "mute/unmute": "靜音/取消靜音",
@@ -172,7 +173,8 @@
     "wheel": "鼠標滾動輪",
     "keydown": "按下",
     "keyup": "鬆開",
-    "press": "長按"
+    "press": "長按",
+    "lockedModeToggle": "切換鎖定模式"
   },
   "popup": {
     "tips": "需要點擊下頁面才能觸發畫中畫播放",

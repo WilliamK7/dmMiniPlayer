@@ -203,6 +203,10 @@ const config_shortcut = {
     label: t('settingPanel.bpResize'),
     defaultValue: keys('R'),
   }),
+  shortcut_lockedModeToggle: config({
+    label: t('shortcut.lockedModeToggle'),
+    defaultValue: keys('Ctrl', 'Alt', 'L'),
+  }),
 } as const
 
 export default config_shortcut
