@@ -1,3 +1,18 @@
+## v0.6.58
+Features:
+1. Add settings export/import feature
+2. Optimize shortcut settings, now can adjust long-press right-click playback speed function
+3. Add video sharpen button to player toolbar
+Adjustments:
+1. YouTube subtitle fetching changed to web element scraping
+Fixes:
+1. [Inject website PIP function] in settings doesn't take effect when turned off
+2. Some sidebar video switching doesn't work properly on Bilibili
+3. Some shortcuts don't work properly in replacement mode
+4. Key hint black screen
+
+Thanks @xyooz @EricDasha for PRs #154 #156 #160
+
 ## v0.6.57
 Fixed the problem of video sound loss after PIP is turned off
 
