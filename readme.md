@@ -49,8 +49,14 @@
 
 ## How to Dev
 ### env
-pnpm >=10.0.0
-node >=24.11.0
+- pnpm >=10.0.0
+- node >=24.11.0
+
+> [!WARNING]
+> If you are using Windows, please make sure you have Unix utils in your env (rm sh etc.)
+> 
+> Or use WSL, or download [cmder](https://cmder.app/)
+
 ### dev
 ```bash
 pnpm i
