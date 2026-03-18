@@ -46,11 +46,11 @@ const config: typeof _config = (props) => ({
             onChange(actions)
           }}
           onChange={() => {}}
-          className="flex-1 min-w-0"
+          style={{ flex: 1, minWidth: 0 }}
         />
         <select
           defaultValue={KeyType.keydown}
-          className="!min-w-0 w-auto"
+          style={{ minWidth: 0, width: 'auto' }}
           value={keyType}
           onChange={(e) => {
             const keyType = e.target.value as Key

@@ -369,7 +369,7 @@ const {
   },
   useShadowDom: isPluginEnv,
   ...(isPluginEnv && isDev
-    ? { styleHref: Browser.runtime.getURL('/css.css') }
+    ? { styleHref: Browser.runtime.getURL('/setting-panel.css') }
     : {}),
 })
 let oldConfig: Partial<typeof configStore>

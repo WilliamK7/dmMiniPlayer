@@ -10,6 +10,10 @@ export default defineConfig({
   ...omit(shareConfig, ['onSuccess']),
   esbuildPlugins: [...shareConfig.esbuildPlugins, outputListener()],
   async onSuccess() {
+    fs.copySync(
+      pr('../node_modules/@apad/setting-panel/lib/index.css'),
+      pr(outDir, './setting-panel.css'),
+    )
     manifest.web_accessible_resources = [
       {
         resources: fs.readdirSync(pr(outDir)),
