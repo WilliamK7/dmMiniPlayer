@@ -76,8 +76,53 @@ export default class BilibiliLiveBarrageClient extends BarrageClient {
       let color = '#' + info[0][3].toString(16),
         text = info[1]
 
-      // console.log('danmu', text, info)
-      this.emit('danmu', { color, text })
+      const extraRoot = info[0][15]
+      const extraData =
+        extraRoot && extraRoot.extra ? JSON.parse(extraRoot.extra) : ({} as any)
+      const imageMap: Record<
+        string,
+        { url: string; width: number; height: number }
+      > = {}
+      if (extraData.emots) {
+        const emots = extraData.emots
+        for (const key in emots) {
+          const emoticon = emots[key]
+          imageMap[key] = {
+            url: emoticon.url,
+            width: emoticon.width,
+            height: emoticon.height,
+          }
+        }
+      }
+
+      /** 
+   * {
+    "bulge_display": 1,
+    "emoticon_unique": "upower_[2233娘_大笑]",
+    "height": 20,
+    "in_player_area": 1,
+    "is_dynamic": 0,
+    "url": "http://i0.hdslb.com/bfs/emote/16b8794be990cefa6caeba4d901b934a227ee3b8.png",
+    "width": 20
+}
+   */
+      const bigImageData = info[0][13]
+      if (bigImageData) {
+        if (
+          bigImageData.emoticon_unique &&
+          bigImageData.emoticon_unique === extraData.emoticon_unique &&
+          extraData.content
+        ) {
+          imageMap[extraData.content] = {
+            url: bigImageData.url,
+            width: bigImageData.width,
+            height: bigImageData.height,
+          }
+        }
+      }
+
+      console.log('danmu', text, info)
+      this.emit('danmu', { color, text, imageMap })
     })
   }
   close(): void {

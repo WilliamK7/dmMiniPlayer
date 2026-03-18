@@ -79,6 +79,10 @@ export default abstract class DanmakuEngine extends Events2<DanmakuEngineEvents>
     return configStore.fontShadow
   }
 
+  get disableOnlyImageDanmaku() {
+    return configStore.disableOnlyImageDanmaku
+  }
+
   containerWidth = 0
   containerHeight = 0
 

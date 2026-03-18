@@ -2,6 +2,7 @@ import { addEventListener, createElement, getTextWidth } from '@root/utils'
 import { DanmakuBase } from '../'
 import type { DanmakuInitProps } from '../DanmakuBase'
 
+const STANDARD_FS = 14
 export default class HtmlDanmaku extends DanmakuBase {
   // 弹幕el: text_<s></s>
   // 通过用IntersectionObserver监听<s>是否enter或leave，占领/释放弹幕tunnel
@@ -9,6 +10,9 @@ export default class HtmlDanmaku extends DanmakuBase {
   el?: HTMLElement
   /**给tunnelManager监听 */
   outTunnelObserveEl?: HTMLSpanElement
+  // imageLength = 0
+  allImageWidth = 0
+  onlyImage = false
 
   override onInit(props: DanmakuInitProps): void {
     this.tunnel = this.danmakuEngine.tunnelManager.getTunnel(this)
@@ -20,19 +24,48 @@ export default class HtmlDanmaku extends DanmakuBase {
     this.initTime = props.initTime || this.time
 
     this.outTunnelObserveEl = createElement('span')
-    this.el = createElement('div', {
-      className: `danmaku-item ${this.type}`,
-      innerText: this.text,
-      children: [this.outTunnelObserveEl],
-    })
 
-    this.updateState()
-    this.container.appendChild(this.el)
+    let innerHTML = Object.entries(this.imageMap)
+      .reduce((resolvedText, [imageKey, imageData]) => {
+        return resolvedText.replaceAll(imageKey, (_, matchIndex, matchKey) => {
+          // 去除匹配到的图片字符串
+          this.text =
+            this.text.slice(0, matchIndex) +
+            this.text.slice(matchIndex + matchKey.length)
 
-    this.danmakuEngine.emit('danmaku-enter', this)
-    this.bindEvent()
+          const imageWidth =
+            imageData.width * (this.danmakuEngine.fontSize / STANDARD_FS)
+          this.allImageWidth += imageWidth
+
+          return `<div style="height: var(--font-size); width: calc(var(--font-size) * ${imageData.width / imageData.height}); display: inline-block;" ><img src="${imageData.url}" style="height: 100%; width: 100%;" /></div>`
+        })
+      }, this.text)
+      .trim()
+
+    // 只有图片的情况
+    if (!this.text.trim()) {
+      this.onlyImage = true
+    }
+
+    if (this.danmakuEngine.disableOnlyImageDanmaku ? !this.onlyImage : true) {
+      this.el = createElement('div', {
+        className: `danmaku-item ${this.type}`,
+        // innerText: this.text,
+        innerHTML,
+        children: [this.outTunnelObserveEl],
+      })
+
+      this.updateState()
+      this.container.appendChild(this.el)
+      this.danmakuEngine.emit('danmaku-enter', this)
+      this.bindEvent()
+      this.danmakuEngine.runningDanmakus.add(this)
+    } else {
+      this.disabled = true
+      this.danmakuEngine.tunnelManager.popTunnel(this)
+    }
+
     this.initd = true
-    this.danmakuEngine.runningDanmakus.add(this)
   }
 
   private unbindEvent = () => {}
@@ -74,11 +107,15 @@ export default class HtmlDanmaku extends DanmakuBase {
   }
 
   override updateState() {
-    const w = getTextWidth(this.text, {
-      fontSize: this.danmakuEngine.fontSize + 'px',
-      fontFamily: this.danmakuEngine.fontFamily,
-      fontWeight: this.danmakuEngine.fontWeight,
-    })
+    const imageWidth =
+      this.allImageWidth * (this.danmakuEngine.fontSize / STANDARD_FS)
+    const w =
+      getTextWidth(this.text, {
+        fontSize: this.danmakuEngine.fontSize + 'px',
+        fontFamily: this.danmakuEngine.fontFamily,
+        fontWeight: this.danmakuEngine.fontWeight,
+      }) + imageWidth
+
     this.width = w
 
     const cw = this.container.clientWidth

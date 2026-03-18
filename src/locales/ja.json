@@ -49,6 +49,7 @@
     "fontShadowDesc": "フォントのレンダリングは向上しましたが,激しい弾幕の状況ではパフォーマンスに重大な問題が発生します",
     "gap": "上下の弾幕の間のギャップ",
     "maxTunnel": "弾幕レンダリング行の最大数",
+    "disableOnlyImageDanmaku": "画像のみの弾幕を無効にする",
     "adjustFontsizeByPIPWidthResize": "動的フォント サイズ",
     "adjustFontsizeByPIPWidthResizeDesc": "ピクチャーインピクチャーのサイズが変更されるとフォント サイズが調整されます",
     "adjustFontsizeStartWidth": "標準幅",

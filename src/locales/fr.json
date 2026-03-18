@@ -49,6 +49,7 @@
     "fontShadowDesc": "Meilleur rendu des polices, mais sérieux problèmes de performances dans les situations de barrage intense",
     "gap": "L'écart entre les barrages supérieur et inférieur",
     "maxTunnel": "Nombre maximum de lignes de rendu de barrage",
+    "disableOnlyImageDanmaku": "Désactiver les danmaku qui ne contiennent que des images",
     "adjustFontsizeByPIPWidthResize": "Taille de police dynamique",
     "adjustFontsizeByPIPWidthResizeDesc": "La taille de la police est ajustée lorsque la taille de l'image dans l'image change",
     "adjustFontsizeStartWidth": "Largeur standard",

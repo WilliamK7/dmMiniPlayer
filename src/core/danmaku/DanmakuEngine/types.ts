@@ -8,6 +8,7 @@ export type DanmakuInitData = {
   time?: number
   color: string
   type: DanmakuMoveType
+  imageMap?: Record<string, { url: string; width: number; height: number }>
 }
 export type DanmakuEngineEvents = {
   'danmaku-enter': DanmakuBase

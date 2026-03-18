@@ -49,6 +49,7 @@
     "fontShadowDesc": "Mejor representación de fuentes, pero serios problemas de rendimiento en situaciones de bombardeo intenso",
     "gap": "La brecha entre las barreras superior e inferior",
     "maxTunnel": "Número máximo de líneas de renderizado de barrera",
+    "disableOnlyImageDanmaku": "Desactivar danmaku que solo contiene imágenes",
     "adjustFontsizeByPIPWidthResize": "Tamaño de fuente dinámico",
     "adjustFontsizeByPIPWidthResizeDesc": "El tamaño de fuente se ajusta cuando cambia el tamaño de imagen en imagen",
     "adjustFontsizeStartWidth": "Ancho estándar",

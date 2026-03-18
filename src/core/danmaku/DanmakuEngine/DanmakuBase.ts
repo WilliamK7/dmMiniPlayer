@@ -5,10 +5,11 @@ import { DanmakuInitData, DanmakuEngine, DanmakuMoveType } from '.'
 export type DanmakuInitProps = {
   initTime?: number
 }
-export default class DanmakuBase implements DanmakuInitData, PlayerComponent {
+export default class DanmakuBase implements DanmakuInitData {
   id: string
   color: string
   text: string
+  imageMap: Record<string, { url: string; width: number; height: number }> = {}
   time = 0
   type: DanmakuMoveType
   width = 0
@@ -46,6 +47,7 @@ export default class DanmakuBase implements DanmakuInitData, PlayerComponent {
     this.time = props.time || 0
     this.type = props.type
     this.propsTime = this.time
+    this.imageMap = props.imageMap || {}
 
     if (this instanceof props.danmakuEngine.Danmaku) {
       return this

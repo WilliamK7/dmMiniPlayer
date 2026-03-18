@@ -94,6 +94,11 @@ const config_danmaku = {
     group: [MaxTunnelType['1/2'], MaxTunnelType['1/4'], MaxTunnelType.full],
   }),
 
+  disableOnlyImageDanmaku: config({
+    defaultValue: false,
+    label: t('settingPanel.disableOnlyImageDanmaku'),
+  }),
+
   adjustFontsizeByPIPWidthResize: config({
     defaultValue: true,
     label: t('settingPanel.adjustFontsizeByPIPWidthResize'),

@@ -49,6 +49,7 @@
     "fontShadowDesc": "更好的字體渲染，但在大量彈幕情況中存在嚴重的效能問題",
     "gap": "上下彈幕之間的間距",
     "maxTunnel": "彈幕最大渲染行數",
+    "disableOnlyImageDanmaku": "禁用只包含圖片的彈幕",
     "adjustFontsizeByPIPWidthResize": "動態字體大小",
     "adjustFontsizeByPIPWidthResizeDesc": "畫中畫大小改變時字體大小跟著調整",
     "adjustFontsizeStartWidth": "標準寬度",

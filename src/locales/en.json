@@ -49,6 +49,7 @@
     "fontShadowDesc": "Better font render, but have serious performance issues in a large number of danmakus",
     "gap": "Gap in vertical danmakus",
     "maxTunnel": "Max render danmaku rows",
+    "disableOnlyImageDanmaku": "Disable danmaku that only contains images",
     "adjustFontsizeByPIPWidthResize": "Dynamic font size",
     "adjustFontsizeByPIPWidthResizeDesc": "When the picture-in-picture size is changed, the font size will be adjusted accordingly.",
     "adjustFontsizeStartWidth": "Standard width",
