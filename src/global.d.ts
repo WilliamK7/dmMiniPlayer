@@ -53,6 +53,10 @@ interface MediaTrackConstraints {
   }>
 }
 
+interface MediaSessionActionDetails {
+  enterPictureInPictureReason: 'useraction' | 'contentoccluded'
+}
+
 interface MediaStreamTrack {
   cropTo: (cropTarget: CropTarget) => Promise<void>
   restrictTo: (restrictTarget: RestrictionTarget) => Promise<void>

@@ -407,8 +407,16 @@ function main() {
       isAutoPIP = configStore.autoPIP_inPageHide
     })
     navigator.mediaSession.setActionHandler('enterpictureinpicture', (e) => {
-      if (!isAutoPIP) return
-      requestVideoPIP()
+      const action = e.enterPictureInPictureReason
+      switch (action) {
+        case 'useraction': {
+          return requestVideoPIP()
+        }
+        case 'contentoccluded': {
+          if (!isAutoPIP) return
+          return requestVideoPIP()
+        }
+      }
     })
   } catch (error) {
     console.log('🟡 No support mediaSession action enterpictureinpicture')

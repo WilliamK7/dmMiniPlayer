@@ -31,17 +31,6 @@ if (canRun && !hasInit) {
     }
   })
 
-  document.addEventListener('visibilitychange', () => {
-    const isHidden = document.visibilityState === 'hidden'
-
-    if (!configStore.autoPIP_inPageHide) return
-    if (window.provider?.active) return
-    if (!activeVideoEl) return
-    if (!isHidden) return
-    if (activeVideoEl.muted || activeVideoEl.paused) return
-    startPIP(configStore.docPIP_renderType, activeVideoEl, 'tabHidden')
-  })
-
   hasInit = true
 }
 
@@ -56,10 +45,7 @@ const observeVideo = (videoEl: HTMLVideoElement) => {
 }
 
 const startPIP = async (
-  ...args: [
-    ...Parameters<typeof postStartPIPDataMsg>,
-    type: 'scrollOut' | 'tabHidden',
-  ]
+  ...args: [...Parameters<typeof postStartPIPDataMsg>, type: 'scrollOut']
 ) => {
   postStartPIPDataMsg(args[0], args[1])
 
@@ -131,19 +117,6 @@ const startPIP = async (
         })
         observer.observe(vTopEl)
         observer.observe(vBottomEl)
-        break
-      }
-      case 'tabHidden': {
-        const unListenVisibleChange = addEventListener(document, (document) => {
-          document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') return
-            postMessageToTop(PostMessageEvent.closeDocPIP, {
-              type: 'autoPIP_closeInReturnToOriginPos',
-            })
-            console.log('show')
-            unListenVisibleChange()
-          })
-        })
         break
       }
     }
