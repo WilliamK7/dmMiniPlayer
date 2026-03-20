@@ -47,7 +47,10 @@ if (isDev) {
         break
       case 'extReload':
         setBrowserLocalStorage(NEED_RELOAD_PAGE, true).then((res) => {
-          chrome.runtime.reload()
+          // 需要上点延迟，不然background.js还是旧的
+          setTimeout(() => {
+            Browser.runtime.reload()
+          }, 50)
         })
     }
   })
