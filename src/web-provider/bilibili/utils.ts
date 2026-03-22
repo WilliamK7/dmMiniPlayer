@@ -2,12 +2,12 @@ import { getVideoInfoFromUrl } from '@pkgs/danmakuGetter/apiDanmaku/bilibili/Bil
 import { DanmakuInitData } from '@root/core/danmaku/DanmakuEngine'
 import type { SubtitleItem } from '@root/core/SubtitleManager/types'
 import { getBiliBiliVideoDanmu } from '@root/danmaku/bilibili/videoBarrageClient/bilibili-api'
-import { DanmakuStack } from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evaolved/converter/danmaku-stack'
-import { DanmakuType } from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evaolved/converter/danmaku-type'
+import { DanmakuStack } from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evolved/converter/danmaku-stack'
+import { DanmakuType } from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evolved/converter/danmaku-type'
 import {
   JsonDanmaku,
   getTextByType,
-} from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evaolved/download/utils'
+} from '@root/danmaku/bilibili/videoBarrageClient/bilibili-evolved/download/utils'
 import configStore from '@root/store/config'
 import { onceCall, wait } from '@root/utils'
 import AssParser from '@root/utils/AssParser'
@@ -67,10 +67,10 @@ export function getSubtitle(url: string): Promise<BiliBiliSubtitleRes> {
 }
 
 export const getDanmakus = onceCall(async (aid: string, cid: string) => {
-  if (!configStore.biliVideoDansFromBiliEvaolved) {
+  if (!configStore.biliVideoDansFromBiliEvolved) {
     return getBiliBiliVideoDanmu(cid)
   } else {
-    // 走bili-evaolved的
+    // 走bili-evolved的
     let danmuContent = await getTextByType(
       configStore.biliVideoPakkuFilter ? 'ass' : 'originJson',
       { aid, cid },
