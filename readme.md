@@ -83,7 +83,7 @@ Drag `dist` folder and drop to `chrome://extensions/` page in Chrome (Open devel
 ## 💖 引用代码
 非常感谢这些项目的开源，让我抄了不少代码节省了很多时间
 
-- [bilibili-evaolved](https://github.com/the1812/Bilibili-Evolved)
+- [bilibili-evolved](https://github.com/the1812/Bilibili-Evolved)
 - [douyu-monitor](https://github.com/qianjiachun/douyu-monitor)
 - [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
 - [rc-slider](http://github.com/react-component/slider)

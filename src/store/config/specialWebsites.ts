@@ -5,16 +5,16 @@ const category = t('settingPanel.specialWebsites')
 const config: typeof _config = (props) => ({ ...props, category })
 
 const config_specialWebsites = {
-  biliVideoDansFromBiliEvaolved: config({
+  biliVideoDansFromBiliEvolved: config({
     defaultValue: false,
-    label: t('settingPanel.biliVideoDansFromBiliEvaolved'),
-    desc: t('settingPanel.biliVideoDansFromBiliEvaolvedDesc'),
+    label: t('settingPanel.biliVideoDansFromBiliEvolved'),
+    desc: t('settingPanel.biliVideoDansFromBiliEvolvedDesc'),
   }),
   biliVideoPakkuFilter: config({
     defaultValue: true,
     label: t('settingPanel.biliVideoPakkuFilter'),
     desc: t('settingPanel.biliVideoPakkuFilterDesc'),
-    relateBy: 'biliVideoDansFromBiliEvaolved',
+    relateBy: 'biliVideoDansFromBiliEvolved',
     relateByValue: true,
   }),
 
